@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>とくにく | 落書きとイラスト</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #fffaf5;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ffd1dc, #ffe6cc);
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+        
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        h1 { margin: 15px 0 8px; font-size: 2.6rem; }
+        .subtitle { font-size: 1.15rem; color: #555; }
+        
+        .gallery {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .artwork {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .artwork:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .artwork img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .info {
+            padding: 14px 16px;
+            font-size: 0.95rem;
+        }
+        
+        .date { color: #888; font-size: 0.85rem; }
+        
+        .x-link {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 1.05rem;
+        }
+        
+        .x-link a {
+            color: #1da1f2;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://pbs.twimg.com/profile_images/2029925448516521984/bdIpkE4q.jpg" alt="とくにく" class="avatar">
+        <h1>とくにく</h1>
+        <p class="subtitle">X（@specialmeat12）に上げた落書き・イラストをまとめて見られます</p>
+    </header>
+
+    <div class="gallery">
+        <h2 style="text-align:center; margin-bottom:30px;">最近の作品（Xから）</h2>
+        
+        <div class="grid" id="art-grid">
+            <!-- ここに作品が自動的に並びます（下のscriptで追加） -->
+        </div>
+    </div>
+
+    <div class="x-link">
+        <p>もっと見る → <a href="https://x.com/specialmeat12" target="_blank">@specialmeat12</a> で最新の落書きをチェック！</p>
+    </div>
+
+    <script>
+        // === ここにXの画像URLを追加するだけ！ ===
+        const artworks = [
+            {
+                img: "https://pbs.twimg.com/media/HFc4b7VbsAAZmRR.jpg",
+                title: "#Liella応援",
+                date: "2026年4月"
+            },
+            {
+                img: "https://pbs.twimg.com/media/HE6h-eybcAAF3JM.jpg",
+                title: "落書き　デレの川島瑞樹ちゃん",
+                date: "2026年4月"
+            },
+            {
+                img: "https://pbs.twimg.com/media/HEV-TPFbYAcTQ1M.jpg",
+                title: "前髪がしっくりこなかった日の澁谷",
+                date: "2026年3月"
+            },
+            {
+                img: "https://pbs.twimg.com/media/HDxXwgzb0AAphnu.jpg",
+                title: "バニーガール（過去作）",
+                date: "2026年3月"
+            },
+            {
+                img: "https://pbs.twimg.com/media/HEAgWNhaYAA7Aly.jpg",
+                title: "BR★Sと桜の雨とプラチナ！",
+                date: "2026年3月"
+            }
+            // ← 新しい絵を追加したいときは、ここにカンマで区切って同じ形式で追加してください
+            // 例：
+            // , { img: "新しい画像URL", title: "タイトル", date: "2026年4月" }
+        ];
+
+        // グリッドに自動で表示
+        const grid = document.getElementById('art-grid');
+        artworks.forEach(art => {
+            const div = document.createElement('div');
+            div.className = 'artwork';
+            div.innerHTML = `
+                <img src="${art.img}" alt="${art.title}" loading="lazy">
+                <div class="info">
+                    <strong>${art.title}</strong><br>
+                    <span class="date">${art.date}</span>
+                </div>
+            `;
+            grid.appendChild(div);
+        });
+    </script>
+
+    <footer style="text-align:center; padding:50px 20px; color:#777; font-size:0.9rem;">
+        © とくにく (@specialmeat12)<br>
+        すべての作品の著作権は作者に帰属します。無断転載・商用利用禁止。
+    </footer>
+</body>
+</html>
